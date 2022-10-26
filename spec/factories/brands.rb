@@ -1,8 +1,8 @@
 FactoryBot.define do
-  sequence :category_name do |_i|
-    "Categoria #{n}"
+  sequence :brand_name do |n|
+    "Marca #{n}"
   end
-  factory :category do
-    name { generate(:category_name ) }
+  factory :brand do
+    name { generate(:brand_name ) }
   end
 end
