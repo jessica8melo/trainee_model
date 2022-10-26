@@ -1,6 +1,6 @@
 FactoryBot.define do
   sequence :category_name do |_i|
-    'Categoria'
+    "Categoria #{n}"
   end
   factory :category do
     name { generate(:category_name ) }

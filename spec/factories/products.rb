@@ -1,10 +1,14 @@
 FactoryBot.define do
+  sequence :product_names do |n|
+    "Product #{n}"
+  end
+  
   factory :product do
-    name { "MyString" }
     description { "MyString" }
     price { 1 }
     inventory { 1 }
-    category { association :category }
+    name { generate(:product_names)}
     brand { association :brand }
+    category { association :category }
   end
 end

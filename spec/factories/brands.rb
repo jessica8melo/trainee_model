@@ -1,5 +1,8 @@
 FactoryBot.define do
-  factory :brand do
-    name { "MyString" }
+  sequence :category_name do |_i|
+    "Categoria #{n}"
+  end
+  factory :category do
+    name { generate(:category_name ) }
   end
 end
