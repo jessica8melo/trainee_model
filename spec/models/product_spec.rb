@@ -22,6 +22,18 @@ RSpec.describe Product, type: :model do
     end
   end
 
+  context "Validating description" do
+    it " should be invalid if nil" do
+      expect(build(:product, description: nil)).to be_invalid
+    end
+  end
+
+  context "Validating inventory" do
+    it " should be invalid if nil" do
+      expect(build(:product, inventory: nil)).to be_invalid
+    end
+  end
+
   context "Validating category" do
     it " should be invalid if nil" do
       expect(build(:product, category: nil)).to be_invalid
