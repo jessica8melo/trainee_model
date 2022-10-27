@@ -12,7 +12,7 @@ class Api::V1::ProductController < ApplicationController
     end
 
     def create
-        product = Product.new(category_params)
+        product = Product.new(product_params)
         product.save!
         render json: product, status: :created
     rescue StandardError => e
@@ -38,6 +38,6 @@ class Api::V1::ProductController < ApplicationController
     private
 
     def product_params
-        params.require(:product).permit(:name, :price, :category, :brand)
+        params.require(:product).permit(:name, :price, :category, :brand, :description, :inventory)
     end
 end
