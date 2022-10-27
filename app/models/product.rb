@@ -4,5 +4,5 @@ class Product < ApplicationRecord
   has_many :carts, dependent: :destroy
 
   validates :name, presence: :true, uniqueness: :true
-  validates :price, :category, :brand, presence: :true
+  validates :price, :category, :brand, :description, :inventory, presence: :true
 end
