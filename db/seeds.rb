@@ -14,5 +14,5 @@ Product.create!(name: "Camisa do Brasil", price: 350, category_id: 2, brand_id: 
 Product.create!(name: "Meia", price: 60, category_id: 2, brand_id: 2, description: "Meia soquete", inventory: 10)
 Product.create!(name: "Máquina de Lavar", price: 2400, category_id: 3, brand_id: 3, description: "Máquina de lavar de 8kg", inventory: 10)
 Product.create!(name: "Aspirador de Pó", price: 1300, category_id: 3, brand_id: 3, description: "Aspirador de 1,2L", inventory: 10)
-Product.create!(name: "Geladeira", price: 3000 category_id: 3, brand_id: 3, description: "Geladeira duplex", inventory: 10)
+Product.create!(name: "Geladeira", price: 3000, category_id: 3, brand_id: 3, description: "Geladeira duplex", inventory: 10)
 Product.create!(name: "Cafeteira", price: 240, category_id: 3, brand_id: 3, description: "Cafeteira Expresso dose única", inventory: 10)
