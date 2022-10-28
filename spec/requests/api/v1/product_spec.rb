@@ -7,8 +7,8 @@ RSpec.describe "Api::V1::Products", type: :request do
       create(:category, id:2, name: "Móveis")
       create(:brand, id:1, name: "Penalty")
       create(:brand, id:2, name: "Castor")
-      create(:product, id:1, name: "Bola de Futebol", price:1, brand_id:1, category_id:1)
-      create(:product, id:2, name: "Cama", price:2, brand_id:2, category_id:2)
+      create(:product, id:1, name: "Bola de Futebol", price:1, brand_id:1, category_id:1, description: "Para jogar futebol", inventory: 1)
+      create(:product, id:2, name: "Cama", price:2, brand_id:2, category_id:2, description: "Para deitar-se", inventory: 2)
     end
     context " when index return" do
       before do
@@ -28,6 +28,8 @@ RSpec.describe "Api::V1::Products", type: :request do
           'price' => 1,
           'brand_id' => 1,
           'category_id' => 1,
+          'description' => 'Para jogar futebol',
+          'inventory' => 1,
           'updated_at' => eval(Product.find(1).created_at.to_json)
         },
         {
@@ -37,6 +39,8 @@ RSpec.describe "Api::V1::Products", type: :request do
           'price' => 2,
           'brand_id' => 2,
           'category_id' => 2,
+          'description' => 'Para deitar-se',
+          'inventory' => 2,
           'updated_at' => eval(Product.find(2).created_at.to_json)
         }
         ])
