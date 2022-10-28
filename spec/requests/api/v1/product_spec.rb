@@ -69,8 +69,10 @@ RSpec.describe "Api::V1::Products", type: :request do
   end
 
   describe "POST /create" do
+      let(:category) {create(:category)}
+      let(:brand)  {create(:brand)}
       let(:product_params) do
-          attributes_for(:product)
+          attributes_for(:product).except(:category, :brand).merge({ category_id: category.id, brand_id: brand.id })
       end
       context " params are ok" do
           it " return http status created" do
