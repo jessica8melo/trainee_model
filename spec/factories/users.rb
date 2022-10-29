@@ -1,9 +1,5 @@
 FactoryBot.define do
   factory :user do
-    email { "MyString" }
-    password { "MyString" }
-    credit { 1 }
-    cart { 1 }
     name { "MyString" }
     is_admin { false }
 
