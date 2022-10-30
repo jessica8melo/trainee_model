@@ -16,3 +16,5 @@ Product.create!(name: "Máquina de Lavar", price: 2400, category_id: 3, brand_id
 Product.create!(name: "Aspirador de Pó", price: 1300, category_id: 3, brand_id: 3, description: "Aspirador de 1,2L", inventory: 10)
 Product.create!(name: "Geladeira", price: 3000, category_id: 3, brand_id: 3, description: "Geladeira duplex", inventory: 10)
 Product.create!(name: "Cafeteira", price: 240, category_id: 3, brand_id: 3, description: "Cafeteira Expresso dose única", inventory: 10)
+
+Admin.create!(email:"trainee@struct", password:"123456")
