@@ -1,6 +1,6 @@
 class Api::V1::CategoryController < ApplicationController
     
-    acts_as_token_authentication_handler_for Admin, only:[:create, :update, :delete]
+    acts_as_token_authentication_handler_for User, only:[:create, :update, :delete]
     def index 
         category = Category.all 
         render json: category, status: :ok
