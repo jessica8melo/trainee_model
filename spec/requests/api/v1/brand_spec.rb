@@ -55,15 +55,15 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "POST /create" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:brand_params) do
       attributes_for(:brand)
     end
     context " params are ok" do
       it " return http status created" do
         post "/api/v1/brand/create", params: {brand: brand_params}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:created)
       end
@@ -72,19 +72,19 @@ RSpec.describe "Api::V1::Brands", type: :request do
       it " when params are nil" do
         brand_params = nil
         post "/api/v1/brand/create", params: {brand: brand_params}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:bad_request)
       end
       it " when params are not unique" do
         post "/api/v1/brand/create", params: {brand: brand_params}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         post "/api/v1/brand/create", params: {brand: brand_params}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:bad_request)
       end
@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "PATCH /update/:id" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:brand1) {create(:brand, name: 'Brand1')}
     let(:brand2) {create(:brand, name: 'Brand2')}
     let(:brand_params) do
@@ -101,8 +101,8 @@ RSpec.describe "Api::V1::Brands", type: :request do
     context " params are ok" do
       it " return http status ok" do
         patch "/api/v1/brand/update/#{brand1.id}", params: {brand: {name: "Ambev"}}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:ok)
       end
@@ -110,8 +110,8 @@ RSpec.describe "Api::V1::Brands", type: :request do
     context " params are nil" do
       it " return http status bad_request" do
         patch "/api/v1/brand/update/#{brand1.id}", params: {brand: {name: nil}}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:bad_request)
       end
@@ -119,8 +119,8 @@ RSpec.describe "Api::V1::Brands", type: :request do
     context " params are not unique" do
       it " return http status bad_request" do
         patch "/api/v1/brand/update/#{brand1.id}", params: {brand: {name: brand2.name}}, headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:bad_request)
       end
@@ -128,13 +128,13 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "DELETE /delete/:id" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:brand) {create(:brand)}
     context "brand exists" do
       it " returns http status ok" do
         delete "/api/v1/brand/delete/#{brand.id}", headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:ok)
       end
@@ -142,8 +142,8 @@ RSpec.describe "Api::V1::Brands", type: :request do
     context " brand does not exists" do
       it " returns http status bad_request" do
         delete "/api/v1/brand/delete/-1", headers: {
-          'X-Admin-Email': admin.email,
-          'X-Admin-Token': admin.authentication_token
+          'X-User-Email': user.email,
+          'X-User-Token': user.authentication_token
         }
         expect(response).to have_http_status(:bad_request)
       end

@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Products", type: :request do
   end
 
   describe "POST /create" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:category) {create(:category)}
     let(:brand)  {create(:brand)}
     let(:product_params) do
@@ -78,9 +78,9 @@ RSpec.describe "Api::V1::Products", type: :request do
     context " params are ok" do
         it " return http status created" do
             post "/api/v1/product/create", params: {product: product_params}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:created)
         end
     end
@@ -88,27 +88,27 @@ RSpec.describe "Api::V1::Products", type: :request do
         it " when params are nil" do
             product_params = nil
             post "/api/v1/product/create", params: {product: product_params}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:bad_request)
         end
         it " when params are not unique" do
             post "/api/v1/product/create", params: {product: product_params}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             post "/api/v1/product/create", params: {product: product_params}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:bad_request)
         end
     end
   end
 
   describe "PATCH /update/:id" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:product1) {create(:product, name: 'Product1')}
     let(:product2) {create(:product, name: 'Product2')}
     let(:product_params) do
@@ -117,50 +117,50 @@ RSpec.describe "Api::V1::Products", type: :request do
     context " params are ok" do
         it " return http status" do
             patch "/api/v1/product/update/#{product1.id}", params: {product: {name: "Refrigerante"}}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:ok)
         end
     end
     context " params are nil" do
         it " return http status bad_request" do
             patch "/api/v1/product/update/#{product1.id}", params: {product: {name: nil}}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:bad_request)
         end
     end
     context " params are not unique" do
         it " return http status bad_request" do
             patch "/api/v1/product/update/#{product1.id}", params: {product: {name: product2.name}}, headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:bad_request)
         end
     end
   end
 
   describe "DELETE /delete/:id" do
-    let(:admin) {create(:admin)}
+    let(:user) {create(:user)}
     let(:product) {create(:product)}
     context " product exists" do
         it " return http status ok" do
             delete "/api/v1/product/delete/#{product.id}", headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:ok)
         end
     end
     context " product does not exists" do
         it " return http status bad_request" do
             delete "/api/v1/product/delete/-1", headers: {
-                'X-Admin-Email': admin.email,
-                'X-Admin-Token': admin.authentication_token
-              }
+              'X-User-Email': user.email,
+              'X-User-Token': user.authentication_token
+            }
             expect(response).to have_http_status(:bad_request)
         end
     end
