@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: :all
+  devise_for :users, skip: :all
 
   namespace 'api' do
     namespace 'v1' do
-      scope 'admin' do
-        get 'login', to: 'admin#login'
-        get 'logout', to: 'admin#logout'
+      scope 'user' do
+        get 'login', to: 'user#login'
+        get 'logout', to: 'user#logout'
       end
       scope 'category' do
         get 'index', to: 'category#index'
