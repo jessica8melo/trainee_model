@@ -1,6 +1,7 @@
 class Api::V1::BrandController < ApplicationController
     
     acts_as_token_authentication_handler_for User, only:[:create, :update, :delete]
+    before_action :authentication_admin, except: [:index, :show]
     def index
         brand = Brand.all
         render json: brand, status: :ok
@@ -36,6 +37,8 @@ class Api::V1::BrandController < ApplicationController
     rescue StandardError => e 
         render json: e, status: :bad_request
     end
+
+    private
 
     def brand_params
         params.require(:brand).permit(:name)

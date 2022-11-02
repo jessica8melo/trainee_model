@@ -55,7 +55,7 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "POST /create" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:brand_params) do
       attributes_for(:brand)
     end
@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "PATCH /update/:id" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:brand1) {create(:brand, name: 'Brand1')}
     let(:brand2) {create(:brand, name: 'Brand2')}
     let(:brand_params) do
@@ -128,7 +128,7 @@ RSpec.describe "Api::V1::Brands", type: :request do
   end
 
   describe "DELETE /delete/:id" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:brand) {create(:brand)}
     context "brand exists" do
       it " returns http status ok" do

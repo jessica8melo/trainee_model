@@ -55,7 +55,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     end
 
     describe "POST /create" do
-        let(:user) {create(:user)}
+        let(:user) {create(:user, is_admin: true)}
         let(:category_params) do
             attributes_for(:category)
         end
@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     end
 
     describe "PATCH /update/:id" do
-        let(:user) {create(:user)}
+        let(:user) {create(:user, is_admin: true)}
         let(:category1) {create(:category, name: 'Category1')}
         let(:category2) {create(:category, name: 'Category2')}
         let(:category_params) do
@@ -128,7 +128,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     end
 
     describe "DELETE /delete/:id" do
-        let(:user) {create(:user)}
+        let(:user) {create(:user, is_admin: true)}
         let(:category) {create(:category)}
         context " category exists" do
             it " return http status ok" do

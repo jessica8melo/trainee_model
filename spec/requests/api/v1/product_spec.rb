@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Products", type: :request do
   end
 
   describe "POST /create" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:category) {create(:category)}
     let(:brand)  {create(:brand)}
     let(:product_params) do
@@ -108,7 +108,7 @@ RSpec.describe "Api::V1::Products", type: :request do
   end
 
   describe "PATCH /update/:id" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:product1) {create(:product, name: 'Product1')}
     let(:product2) {create(:product, name: 'Product2')}
     let(:product_params) do
@@ -144,7 +144,7 @@ RSpec.describe "Api::V1::Products", type: :request do
   end
 
   describe "DELETE /delete/:id" do
-    let(:user) {create(:user)}
+    let(:user) {create(:user, is_admin: true)}
     let(:product) {create(:product)}
     context " product exists" do
         it " return http status ok" do
