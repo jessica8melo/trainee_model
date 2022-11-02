@@ -28,6 +28,11 @@ Rails.application.routes.draw do
         patch 'update/:id', to: 'product#update'
         delete 'delete/:id', to: 'product#delete'
       end
+      scope 'cart' do
+        get 'show/:user_id', to: 'cart#show'
+        post 'create', to: 'cart#create'
+        delete 'delete/:id', to: 'cart#delete'
+      end
     end
   end
 end
