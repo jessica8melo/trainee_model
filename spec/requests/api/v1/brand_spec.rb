@@ -18,16 +18,12 @@ RSpec.describe "Api::V1::Brands", type: :request do
       end
       it " return the created instances" do
         expect(JSON.parse(response.body)).to eq([{
-          'created_at' => eval(Brand.find(1).created_at.to_json),
           'id' => 1,
-          'name' => 'Adidas',
-          'updated_at' => eval(Brand.find(1).created_at.to_json)
+          'name' => 'Adidas'
         },
         {
-          'created_at' => eval(Brand.find(2).created_at.to_json),
           'id' => 2,
-          'name' => 'Gucci',
-          'updated_at' => eval(Brand.find(2).created_at.to_json)
+          'name' => 'Gucci'
         }
         ])
       end

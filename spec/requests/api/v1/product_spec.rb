@@ -22,26 +22,22 @@ RSpec.describe "Api::V1::Products", type: :request do
       end
       it " return the created instances" do
         expect(JSON.parse(response.body)).to eq([{
-          'created_at' => eval(Product.find(1).created_at.to_json),
           'id' => 1,
           'name' => 'Bola de Futebol',
           'price' => 1,
-          'brand_id' => 1,
-          'category_id' => 1,
+          'brand' => {"id" => 1, "name" => 'Penalty'},
+          'category' => {"id" => 1, "name" => 'Lazer'},
           'description' => 'Para jogar futebol',
-          'inventory' => 1,
-          'updated_at' => eval(Product.find(1).created_at.to_json)
+          'inventory' => 1
         },
         {
-          'created_at' => eval(Product.find(2).created_at.to_json),
           'id' => 2,
           'name' => 'Cama',
           'price' => 2,
-          'brand_id' => 2,
-          'category_id' => 2,
+          'brand' => {"id" => 2, "name" => 'Castor'},
+          'category' => {"id" => 2, "name" => 'Móveis'},
           'description' => 'Para deitar-se',
-          'inventory' => 2,
-          'updated_at' => eval(Product.find(2).created_at.to_json)
+          'inventory' => 2
         }
         ])
       end

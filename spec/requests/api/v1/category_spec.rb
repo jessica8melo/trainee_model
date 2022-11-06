@@ -18,18 +18,13 @@ RSpec.describe "Api::V1::Categories", type: :request do
             end
             it "return the created instances " do
                 expect(JSON.parse(response.body)).to eq([{
-                    'created_at' => eval(Category.find(1).created_at.to_json),
                     'id' => 1,
-                    'name' => 'Lazer',
-                    'updated_at' => eval(Category.find(1).updated_at.to_json)
+                    'name' => 'Lazer'
                 },
                 {
-                    'created_at' => eval(Category.find(2).created_at.to_json),
                     'id' => 2,
-                    'name' => 'Móveis',
-                    'updated_at' => eval(Category.find(2).updated_at.to_json)
-                }
-                ])
+                    'name' => 'Móveis'
+                }])
             end
         end
     end
