@@ -25,7 +25,7 @@ RSpec.describe "Api::V1::Products", type: :request do
           'id' => 1,
           'name' => 'Bola de Futebol',
           'price' => 1,
-          'brand' => {"id" => 1, "name" => 'Penalty'},
+          'brand' => {"id" => 1, "name" => 'Penalty', 'image_url' => nil},
           'category' => {"id" => 1, "name" => 'Lazer'},
           'description' => 'Para jogar futebol',
           'inventory' => 1
@@ -34,7 +34,7 @@ RSpec.describe "Api::V1::Products", type: :request do
           'id' => 2,
           'name' => 'Cama',
           'price' => 2,
-          'brand' => {"id" => 2, "name" => 'Castor'},
+          'brand' => {"id" => 2, "name" => 'Castor', 'image_url' => nil},
           'category' => {"id" => 2, "name" => 'Móveis'},
           'description' => 'Para deitar-se',
           'inventory' => 2
