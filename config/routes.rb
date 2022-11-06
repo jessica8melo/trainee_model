@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         delete 'delete/:id', to: 'product#delete'
       end
       scope 'cart' do
-        get 'show/:user_id', to: 'cart#show'
+        get 'show/:id', to: 'cart#show'
         post 'create', to: 'cart#create'
         delete 'delete/:id', to: 'cart#delete'
       end
