@@ -23,6 +23,7 @@ RSpec.describe "Api::V1::Products", type: :request do
       it " return the created instances" do
         expect(JSON.parse(response.body)).to eq([{
           'id' => 1,
+          'images_url' => [],
           'name' => 'Bola de Futebol',
           'price' => 1,
           'brand' => {"id" => 1, "name" => 'Penalty', 'image_url' => nil},
@@ -32,6 +33,7 @@ RSpec.describe "Api::V1::Products", type: :request do
         },
         {
           'id' => 2,
+          'images_url' => [],
           'name' => 'Cama',
           'price' => 2,
           'brand' => {"id" => 2, "name" => 'Castor', 'image_url' => nil},
