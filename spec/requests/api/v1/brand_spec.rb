@@ -19,11 +19,13 @@ RSpec.describe "Api::V1::Brands", type: :request do
       it " return the created instances" do
         expect(JSON.parse(response.body)).to eq([{
           'id' => 1,
-          'name' => 'Adidas'
+          'name' => 'Adidas',
+          'image_url' => nil
         },
         {
           'id' => 2,
-          'name' => 'Gucci'
+          'name' => 'Gucci',
+          'image_url' => nil
         }
         ])
       end
