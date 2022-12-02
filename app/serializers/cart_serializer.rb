@@ -5,3 +5,5 @@ class CartSerializer < ActiveModel::Serializer
     {id: object.product.id, name: object.product.name}
   end
 end
+
+/teste
