@@ -1,24 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Carts", type: :request do
-  describe "GET /show/:current_user.id" do
-    let(:user) {create(:user, id:1, email:"teste@teste")}
-    let(:cart) {create(:cart, user_id:1)}
-    context " current_user.id exist" do
-        before do
-            get "/api/v1/cart/show/#{user.id}"
-        end
-        it " return http status ok" do
-            expect(response).to have_http_status(:ok)
-        end
+  describe "GET /show/:id" do
+    let(:user) {create(:user, email:"teste@teste")}
+    let(:cart) {create(:cart)}
+    let(:cart_params) do
+      attributes_for(:cart)
     end
-    context " current_user.id not found" do
-        before do
-            get "/api/v1/cart/show/-1"
-        end
-        it " return http status not found" do
-            expect(response).to have_http_status(:not_found)
-        end
+    context " user id exist" do
+      it " return http status ok" do
+        get "/api/v1/cart/show/#{user.id}", params: {cart: cart_params}, headers: {
+            'X-User-Email': user.email,
+            'X-User-Token': user.authentication_token
+          }  
+        expect(response).to have_http_status(:ok)
+      end
+    end
+    context " user id not found" do
+      it " return http status not found" do
+        get "/api/v1/cart/show/-1", params: {cart: cart_params}, headers: {
+            'X-User-Email': user.email,
+            'X-User-Token': user.authentication_token
+          }  
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
   

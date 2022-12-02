@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::API
+    def require_login
+        head(:unauthorized) unless current_user.present?
+    end
+    
     private
 
     def authentication_admin
